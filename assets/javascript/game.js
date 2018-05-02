@@ -5,7 +5,7 @@ window.onload = function() {
 
         wins: 0,
         loses: 0,
-        remainingGuesses: 15,
+        remainingGuesses: 8,
         words: ["tyrannosaurus","triceratops","velociraptor","stegosaurus","brachiosaurus","allosaurus","pachycephalosaurus","pterodactyls"],
         holdsWord: [],
         holdsDisplay: [],
@@ -21,7 +21,7 @@ window.onload = function() {
             this.loses = 0;
             this.holdsDisplay = [];
             this.holdsWord = [];
-            this.remainingGuesses = 15;
+            this.remainingGuesses = 8;
             this.guessedLetters = [];
             this.correct = false;
 
@@ -87,11 +87,11 @@ window.onload = function() {
     }
 
     function updateDisplays() {
-        document.getElementById("DisplayWord").innerHTML = jurassicWords.holdsDisplay.join(' ');
+        document.getElementById("DisplayWord").innerHTML = jurassicWords.holdsDisplay.join('  ');
         document.getElementById("Wins").innerHTML = "Wins " + jurassicWords.wins;
         document.getElementById("Loses").innerHTML = "Loses " + jurassicWords.loses;
         document.getElementById("GuessesRemaining").innerHTML = "Guesses Remaining  " + jurassicWords.remainingGuesses;
-        document.getElementById("LettersGuessed").innerHTML = jurassicWords.guessedLetters.join(' ');
+        document.getElementById("LettersGuessed").innerHTML = jurassicWords.guessedLetters.join('  ');
     }
     // My Run Game Function ***
 
