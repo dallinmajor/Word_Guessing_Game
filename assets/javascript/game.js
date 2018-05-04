@@ -1,22 +1,28 @@
 // THE JURASSICWORDS OBJECT *
 
 window.onload = function() {
+
+
     var jurassicWords = {
 
         wins: 0,
         loses: 0,
         remainingGuesses: 8,
         words: ["tyrannosaurus","triceratops","velociraptor","stegosaurus","brachiosaurus","allosaurus","pachycephalosaurus","pterodactyls"],
+        currentWord: "",
         holdsWord: [],
         holdsDisplay: [],
         guessedLetters: [],
         correct: false,
+        holdCorrect: [],
 
     // JurassicWords Methods **
 
         beginNewRound() {
             newWord = this.words[Math.floor(Math.random() * this.words.length)];
             
+            this.currentWord = newWord;
+
             this.wins = 0;
             this.loses = 0;
             this.holdsDisplay = [];
@@ -75,11 +81,27 @@ window.onload = function() {
             }
         },
 
-        didYouWin() {
+        logDino() {
 
             if (this.holdsDisplay.join() === this.holdsWord.join()) {
+
+               
+                var dinoWords = document.getElementById("DinoNames");
+                var newDiv = document.createElement("div");
+
+                newDiv.textContent = this.currentWord;
+                dinoWords.appendChild(newDiv);
                 
+            }
+        },
+
+        didYouWin() {
+                
+        
+            if (this.holdsDisplay.join() === this.holdsWord.join()) {
+
                 this.beginNewRound();
+
             } else if (this.remainingGuesses === 0) {
                 this.beginNewRound();
             }
@@ -99,10 +121,10 @@ window.onload = function() {
         if (jurassicWords.isNewLetter(userGuess)) {
             jurassicWords.logLetter(userGuess);
             jurassicWords.checkLetter(userGuess);
+            jurassicWords.logDino();
             jurassicWords.didYouWin();
             updateDisplays();
-            console.log(jurassicWords.holdsDisplay);
-            console.log(jurassicWords.holdsWord);
+
         } else {
             return
         }
